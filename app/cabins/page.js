@@ -2,10 +2,14 @@ import CabinList from "@/app/_components/CabinList";
 import { Suspense } from "react";
 import Spinner from "../_components/Spinner";
 import Filter from "../_components/Filter";
+import ReservationReminder from "../_components/ReservationReminder";
 
 export const metadata = {
   title: "Cabins",
 };
+
+console.log("GOOGLE ID:", process.env.AUTH_GOOGLE_ID);
+console.log("GOOGLE SECRET:", process.env.AUTH_GOOGLE_SECRET);
 
 export default async function Page({ searchParams }) {
   const filter = searchParams?.capacity ?? "all";
@@ -27,6 +31,7 @@ export default async function Page({ searchParams }) {
       </div>
       <Suspense fallback={<Spinner />} key={filter}>
         <CabinList filter={filter} />
+        <ReservationReminder />
       </Suspense>
     </div>
   );
