@@ -1,5 +1,10 @@
 "use client";
-import { differenceInDays, isPast, isWithinInterval } from "date-fns";
+import {
+  differenceInDays,
+  isPast,
+  isSameDay,
+  isWithinInterval,
+} from "date-fns";
 import { DayPicker } from "react-day-picker";
 import "react-day-picker/dist/style.css";
 import { useReservation } from "./ReservationContext";
@@ -43,7 +48,7 @@ function DateSelector({ settings, cabin, bookedDates }) {
         numberOfMonths={2}
         disabled={(currDate) =>
           isPast(currDate) ||
-          bookedDates.some((date) => isSomeday(date, currDate))
+          bookedDates.some((date) => isSameDay(date, currDate))
         }
       />
 
